@@ -9,87 +9,94 @@ app.use(json());
 
 app.get("/", (req, res) => {
   console.log(req.query);
-  res.json({
-    content: [
-      {
-        id: 5,
-        nombre: "Erich",
-        apellido: "Gamma",
-        email: "erich.gamma@gmail.com",
-        createAt: "2018-01-31",
-        foto: null,
-        region: {
-          id: 4,
-          nombre: "Europa",
+  let count = 0;
+  setInterval(() => {
+    if (count === 0) {
+      res.status(200).json({
+        content: [
+          {
+            id: 5,
+            nombre: "Erich 4",
+            apellido: "Gamma",
+            email: "erich.gamma@gmail.com",
+            createAt: "2018-01-31",
+            foto: null,
+            region: {
+              id: 4,
+              nombre: "Europa",
+            },
+            facturas: [],
+          },
+          {
+            id: 6,
+            nombre: "Richard",
+            apellido: "Helm",
+            email: "richard.helm@gmail.com",
+            createAt: "2018-02-09",
+            foto: null,
+            region: {
+              id: 3,
+              nombre: "Norteamérica",
+            },
+            facturas: [],
+          },
+          {
+            id: 7,
+            nombre: "Ralph",
+            apellido: "Johnson",
+            email: "ralph.johnson@gmail.com",
+            createAt: "2018-02-17",
+            foto: null,
+            region: {
+              id: 3,
+              nombre: "Norteamérica",
+            },
+            facturas: [],
+          },
+          {
+            id: 8,
+            nombre: "John",
+            apellido: "Vlissides",
+            email: "john.vlissides@gmail.com",
+            createAt: "2018-02-27",
+            foto: null,
+            region: {
+              id: 3,
+              nombre: "Norteamérica",
+            },
+            facturas: [],
+          },
+        ],
+        pageable: {
+          sort: {
+            sorted: false,
+            unsorted: true,
+            empty: true,
+          },
+          offset: 4,
+          pageSize: 4,
+          pageNumber: 1,
+          paged: true,
+          unpaged: false,
         },
-        facturas: [],
-      },
-      {
-        id: 6,
-        nombre: "Richard",
-        apellido: "Helm",
-        email: "richard.helm@gmail.com",
-        createAt: "2018-02-09",
-        foto: null,
-        region: {
-          id: 3,
-          nombre: "Norteamérica",
+        last: false,
+        totalElements: 1000,
+        totalPages: 100,
+        size: 4,
+        number: 1,
+        sort: {
+          sorted: false,
+          unsorted: true,
+          empty: true,
         },
-        facturas: [],
-      },
-      {
-        id: 7,
-        nombre: "Ralph",
-        apellido: "Johnson",
-        email: "ralph.johnson@gmail.com",
-        createAt: "2018-02-17",
-        foto: null,
-        region: {
-          id: 3,
-          nombre: "Norteamérica",
-        },
-        facturas: [],
-      },
-      {
-        id: 8,
-        nombre: "John",
-        apellido: "Vlissides",
-        email: "john.vlissides@gmail.com",
-        createAt: "2018-02-27",
-        foto: null,
-        region: {
-          id: 3,
-          nombre: "Norteamérica",
-        },
-        facturas: [],
-      },
-    ],
-    pageable: {
-      sort: {
-        sorted: false,
-        unsorted: true,
-        empty: true,
-      },
-      offset: 4,
-      pageSize: 4,
-      pageNumber: 1,
-      paged: true,
-      unpaged: false,
-    },
-    last: false,
-    totalElements: 13,
-    totalPages: 4,
-    size: 4,
-    number: 1,
-    sort: {
-      sorted: false,
-      unsorted: true,
-      empty: true,
-    },
-    numberOfElements: 4,
-    first: false,
-    empty: false,
-  });
+        numberOfElements: 4,
+        first: false,
+        empty: false,
+      });
+      clearInterval();
+      count = count + 1;
+    }
+  }, 2000);
 });
 app.post("/", (req, res) => {
   res.json({ POST: req.body.data });
